@@ -63,7 +63,7 @@ npm install
 
 ### Environment variables
 
-Copy the example env file and add your Clerk publishable key:
+Copy the example env file and add your Clerk publishable key from the [Clerk Dashboard](https://dashboard.clerk.com):
 
 ```bash
 cp .env.example .env.local
@@ -71,7 +71,7 @@ cp .env.example .env.local
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Yes | Clerk publishable key from the [Clerk Dashboard](https://dashboard.clerk.com) |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Yes | Clerk **publishable** key (safe for client-side use; never add the secret key here) |
 
 In the Clerk Dashboard, configure:
 
