@@ -2,7 +2,6 @@
 
 import { Archive, BookOpen, FilePlus, Inbox, PenLine, Star, X } from "lucide-react";
 import { useAppPreferences } from "@/contexts/app-preferences";
-import { useEffect } from "react";
 import { notebookColor } from "@/lib/format";
 import { Note, NoteFilter } from "@/lib/types";
 
@@ -29,7 +28,7 @@ export function Sidebar({
   onDismiss,
   onNewNote,
 }: Props) {
-  const { t, isRtl } = useAppPreferences();
+  const { t } = useAppPreferences();
 
   const navItems: { labelKey: "nav.allNotes" | "nav.starred" | "nav.archived"; value: NoteFilter; icon: typeof Inbox }[] = [
     { labelKey: "nav.allNotes", value: "all", icon: Inbox },
@@ -47,11 +46,6 @@ export function Sidebar({
     archived: archivedCount,
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log("Sidebar mobileOpen:", mobileOpen);
-  }, [mobileOpen]);
-
   return (
     <>
       <div
@@ -65,11 +59,7 @@ export function Sidebar({
 
       <aside
         onClick={(e) => e.stopPropagation()}
-        style={{
-          transform: mobileOpen ? "translateX(0)" : isRtl ? "translateX(110%)" : "translateX(-110%)",
-          transition: "transform 200ms ease",
-        }}
-        className={`fixed inset-y-0 start-0 z-50 flex w-[min(88vw,280px)] flex-col border-e border-slate-200 bg-white animate-soft-pop transform transition-transform duration-200 motion-reduce:animate-none dark:border-slate-800 dark:bg-slate-950 lg:static lg:z-0 lg:w-[260px] lg:shrink-0 pointer-events-auto ${
+        className={`fixed inset-y-0 start-0 z-50 flex w-[min(88vw,280px)] flex-col border-e border-slate-200 bg-white lg:animate-soft-pop transform transition-transform duration-200 motion-reduce:animate-none dark:border-slate-800 dark:bg-slate-950 lg:static lg:z-0 lg:w-[260px] lg:shrink-0 pointer-events-auto ${
           mobileOpen
             ? "translate-x-0"
             : "-translate-x-full rtl:translate-x-full lg:translate-x-0 rtl:lg:translate-x-0"
