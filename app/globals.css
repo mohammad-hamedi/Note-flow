@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes locale-switch {
+  0% {
+    opacity: 0.94;
+    transform: translateY(2px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@layer base {
+  html {
+    @apply min-h-full antialiased;
+  }
+
+  html[lang="fa"] body {
+    font-family: var(--font-vazirmatn), var(--font-inter), system-ui, sans-serif;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-canvas text-slate-900 dark:bg-[#0b0f14] dark:text-slate-100;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:shadow-panel-dark;
+  }
+
+  .column-panel {
+    @apply h-full min-h-0;
+  }
+
+  .column-header {
+    @apply bg-white dark:bg-slate-900;
+  }
+
+  .panel-header {
+    @apply border-b border-slate-200/80 bg-slate-50/80 px-5 py-4 dark:border-slate-800 dark:bg-slate-900/80;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition;
+  }
+
+  .chip-active {
+    @apply border-teal-500 bg-teal-50 text-teal-800 dark:border-teal-500/60 dark:bg-teal-950/50 dark:text-teal-300;
+  }
+
+  .chip-inactive {
+    @apply border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-800;
+  }
+
+  .nav-item {
+    @apply flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-start text-sm font-medium transition;
+  }
+
+  .nav-item-active {
+    @apply bg-teal-50 text-teal-900 ring-1 ring-teal-500/20 dark:bg-teal-950/40 dark:text-teal-200 dark:ring-teal-500/30;
+  }
+
+  .nav-item-inactive {
+    @apply text-slate-600 hover:bg-white hover:text-slate-900 hover:shadow-sm dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200;
+  }
+
+  .icon-btn-active {
+    @apply border-teal-500 bg-teal-50 text-teal-700 dark:border-teal-500/60 dark:bg-teal-950/50 dark:text-teal-300;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fade-in-up 220ms ease-out both;
+  }
+
+  .animate-soft-pop {
+    animation: soft-pop 220ms ease-out both;
+  }
+
+  .locale-transition-active {
+    animation: locale-switch 220ms ease-out both;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(203 213 225) transparent;
+  }
+
+  .dark .scrollbar-thin {
+    scrollbar-color: rgb(71 85 105) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-slate-300 dark:bg-slate-600;
+  }
+}
+
+.rich-editor-content {
+  @apply min-h-[420px] w-full px-1 py-2 text-[15px] leading-7 text-slate-700 outline-none dark:text-slate-300;
+}
+
+.rich-editor-content:empty::before {
+  content: attr(data-placeholder);
+  @apply pointer-events-none text-slate-400 dark:text-slate-500;
+}
+
+.rich-editor-content h2 {
+  @apply mb-3 mt-5 text-xl font-semibold text-slate-900 dark:text-slate-100;
+}
+
+.rich-editor-content p {
+  @apply mb-3;
+}
+
+.rich-editor-content ul,
+.rich-editor-content ol {
+  @apply mb-3 ms-6;
+}
+
+.rich-editor-content ul {
+  @apply list-disc;
+}
+
+.rich-editor-content ol {
+  @apply list-decimal;
+}
+
+.rich-editor-content blockquote {
+  @apply my-4 border-s-teal-300 ps-4 italic text-slate-600 dark:border-teal-600 dark:text-slate-400;
+  border-left-width: 0;
+  border-inline-start-width: 4px;
+}
+
+.rich-editor-content strong {
+  @apply font-semibold text-slate-900 dark:text-slate-100;
+}

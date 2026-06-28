@@ -1,0 +1,151 @@
+- main "Notes dashboard" [ref=e2]:
+  - complementary "Workspace navigation" [ref=e3]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - generic [ref=e8]:
+        - paragraph [ref=e9]: Notely
+        - paragraph [ref=e10]: 4 notes
+    - button "Notebook" [ref=e11]:
+      - img [ref=e12]
+      - text: Notebook
+    - navigation "Note views" [ref=e13]:
+      - paragraph [ref=e14]: Navigation
+      - button "All notes4" [ref=e15]:
+        - img [ref=e16]
+        - text: All notes4
+      - button "Favorites2" [ref=e19]:
+        - img [ref=e20]
+        - text: Favorites2
+      - button "Archived0" [ref=e22]:
+        - img [ref=e23]
+        - text: Archived0
+    - navigation "Notebooks" [ref=e26]:
+      - generic [ref=e27]:
+        - paragraph [ref=e28]: Notebooks
+        - img [ref=e29]
+      - button "All notebooks" [ref=e32]:
+        - img [ref=e33]
+        - text: All notebooks
+      - button "Design1" [ref=e36]:
+        - img [ref=e37]
+        - text: Design1
+      - button "Personal1" [ref=e39]:
+        - img [ref=e40]
+        - text: Personal1
+      - button "Work2" [ref=e42]:
+        - img [ref=e43]
+        - text: Work2
+    - generic [ref=e46]:
+      - paragraph [ref=e47]: Workspace storage
+      - paragraph [ref=e48]: 2.4 GB of 10 GB used
+  - region "Notes list" [ref=e49]:
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - paragraph [ref=e52]: Library
+        - heading "Notes" [level=1] [ref=e53]
+      - button "Create note" [ref=e54]:
+        - img [ref=e55]
+    - generic [ref=e56]:
+      - img [ref=e57]
+      - text: Search notes
+      - textbox "Search notes" [ref=e60]:
+        - /placeholder: Search notes, tags, content
+    - generic "Filter notes" [ref=e61]:
+      - button "All" [ref=e62]
+      - button "Starred" [ref=e63]
+      - button "Archived" [ref=e64]
+      - button "More filters" [ref=e65]:
+        - img [ref=e66]
+    - generic "Available tags" [ref=e67]:
+      - generic [ref=e68]: "#Design"
+      - generic [ref=e69]: "#Personal"
+      - generic [ref=e70]: "#Planning"
+      - generic [ref=e71]: "#Product"
+      - generic [ref=e72]: "#Review"
+    - generic [ref=e73]:
+      - generic [ref=e74]: 4 results
+      - text: Updated recently
+    - generic [ref=e75]:
+      - article [ref=e76]:
+        - generic [ref=e77]:
+          - text: Work
+          - button "Remove favorite" [ref=e78]:
+            - img [ref=e79]
+        - heading "Project ideas" [level=2] [ref=e81]
+        - paragraph [ref=e82]: Build a focused notes dashboard with clean navigation, fast search, notebook filters, and an editor that feels calm enough for daily writing.
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - img [ref=e85]
+            - text: Jun 25
+          - button "Archive note" [ref=e88]:
+            - img [ref=e89]
+      - article [ref=e92]:
+        - generic [ref=e93]:
+          - text: Design
+          - button "Favorite note" [ref=e94]:
+            - img [ref=e95]
+        - heading "UI checklist" [level=2] [ref=e97]
+        - paragraph [ref=e98]: Spacing should feel intentional. Keep the interface dense enough for scanning, use visible focus states, and make note actions available without crowding the writing surface.
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - img [ref=e101]
+            - text: Jun 25
+          - button "Archive note" [ref=e104]:
+            - img [ref=e105]
+      - article [ref=e108]:
+        - generic [ref=e109]:
+          - text: Work
+          - button "Favorite note" [ref=e110]:
+            - img [ref=e111]
+        - heading "Quarterly planning notes" [level=2] [ref=e113]
+        - paragraph [ref=e114]: Review launch goals, prioritize customer feedback, and outline the next two experiments for onboarding activation.
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - img [ref=e117]
+            - text: Jun 25
+          - button "Archive note" [ref=e120]:
+            - img [ref=e121]
+      - article [ref=e124]:
+        - generic [ref=e125]:
+          - text: Personal
+          - button "Remove favorite" [ref=e126]:
+            - img [ref=e127]
+        - heading "Reading highlights" [level=2] [ref=e129]
+        - paragraph [ref=e130]: A useful interface makes the next action obvious without explaining itself. Capture examples of quiet productivity tools with strong visual hierarchy.
+        - generic [ref=e131]:
+          - generic [ref=e132]:
+            - img [ref=e133]
+            - text: Jun 24
+          - button "Archive note" [ref=e136]:
+            - img [ref=e137]
+  - region "Note editor" [ref=e140]:
+    - generic [ref=e141]:
+      - generic [ref=e142]:
+        - img [ref=e143]
+        - text: Autosaved
+        - img [ref=e146]
+        - text: June 25 at 9:30 PM
+      - generic [ref=e149]:
+        - button "Share note" [ref=e150]:
+          - img [ref=e151]
+        - button "More actions" [ref=e157]:
+          - img [ref=e158]
+    - generic [ref=e162]:
+      - generic [ref=e163]: "Work#Product #Planning"
+      - textbox "Note title" [ref=e164]:
+        - /placeholder: Untitled note
+        - text: Project ideas
+      - generic "Formatting toolbar" [ref=e165]:
+        - button "Bold" [ref=e166]:
+          - img [ref=e167]
+        - button "Italic" [ref=e169]:
+          - img [ref=e170]
+        - button "Bulleted list" [ref=e172]:
+          - img [ref=e173]
+        - button "Align left" [ref=e174]:
+          - img [ref=e175]
+        - button "Insert link" [ref=e176]:
+          - img [ref=e177]
+      - textbox "Note content" [ref=e180]:
+        - /placeholder: Start writing...
+        - text: Build a focused notes dashboard with clean navigation, fast search, notebook filters, and an editor that feels calm enough for daily writing.
