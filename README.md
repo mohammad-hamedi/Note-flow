@@ -61,22 +61,16 @@ cd note-app
 npm install
 ```
 
-### Environment variables
+### Keyboard shortcuts
 
-Copy the example env file and add your Clerk publishable key from the [Clerk Dashboard](https://dashboard.clerk.com):
+| Shortcut | Action |
+| --- | --- |
+| <kbd>Escape</kbd> | Close mobile sidebar |
+| <kbd>Ctrl</kbd> + <kbd>B</kbd> | Toggle bold in editor |
+| <kbd>Ctrl</kbd> + <kbd>I</kbd> | Toggle italic in editor |
+| <kbd>Ctrl</kbd> + <kbd>U</kbd> | Toggle underline in editor |
 
-```bash
-cp .env.example .env.local
-```
-
-| Variable | Required | Description |
-| --- | --- | --- |
-| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Yes | Clerk **publishable** key (safe for client-side use; never add the secret key here) |
-
-In the Clerk Dashboard, configure:
-
-- **Sign-in URL:** `/sign-in`
-- **After sign-in redirect:** `/`
+These shortcuts enhance the keyboard-friendly experience for power users and streamline note-taking workflows.
 
 ### Development
 
