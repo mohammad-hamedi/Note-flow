@@ -2,6 +2,7 @@
 
 import { Archive, BookOpen, FilePlus, Inbox, PenLine, Star, X } from "lucide-react";
 import { useAppPreferences } from "@/contexts/app-preferences";
+import { useEffect } from "react";
 import { notebookColor } from "@/lib/format";
 import { Note, NoteFilter } from "@/lib/types";
 
@@ -28,7 +29,7 @@ export function Sidebar({
   onDismiss,
   onNewNote,
 }: Props) {
-  const { t } = useAppPreferences();
+  const { t, isRtl } = useAppPreferences();
 
   const navItems: { labelKey: "nav.allNotes" | "nav.starred" | "nav.archived"; value: NoteFilter; icon: typeof Inbox }[] = [
     { labelKey: "nav.allNotes", value: "all", icon: Inbox },
@@ -46,6 +47,11 @@ export function Sidebar({
     archived: archivedCount,
   };
 
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log("Sidebar mobileOpen:", mobileOpen);
+  }, [mobileOpen]);
+
   return (
     <>
       <div
@@ -53,15 +59,20 @@ export function Sidebar({
           mobileOpen ? "visible opacity-100 pointer-events-auto" : "invisible opacity-0 pointer-events-none"
         }`}
         onClick={onDismiss}
+        onTouchStart={onDismiss}
         aria-hidden="true"
       />
 
       <aside
         onClick={(e) => e.stopPropagation()}
-        className={`fixed inset-y-0 start-0 z-50 flex w-[min(88vw,280px)] flex-col border-e border-slate-200 bg-white transition-transform duration-200 dark:border-slate-800 dark:bg-slate-950 lg:static lg:z-0 lg:w-[260px] lg:shrink-0 lg:animate-soft-pop lg:motion-reduce:animate-none ${
+        style={{
+          transform: mobileOpen ? "translateX(0)" : isRtl ? "translateX(110%)" : "translateX(-110%)",
+          transition: "transform 200ms ease",
+        }}
+        className={`fixed inset-y-0 start-0 z-50 flex w-[min(88vw,280px)] flex-col border-e border-slate-200 bg-white animate-soft-pop transform transition-transform duration-200 motion-reduce:animate-none dark:border-slate-800 dark:bg-slate-950 lg:static lg:z-0 lg:w-[260px] lg:shrink-0 pointer-events-auto ${
           mobileOpen
-            ? "translate-x-0 pointer-events-auto"
-            : "-translate-x-full rtl:translate-x-full pointer-events-none lg:pointer-events-auto lg:translate-x-0 rtl:lg:translate-x-0"
+            ? "translate-x-0"
+            : "-translate-x-full rtl:translate-x-full lg:translate-x-0 rtl:lg:translate-x-0"
         }`}
         aria-label="Navigation"
       >
@@ -76,6 +87,8 @@ export function Sidebar({
           <button
             type="button"
             onClick={onDismiss}
+            onPointerDown={onDismiss}
+            onTouchStart={onDismiss}
             className="icon-btn lg:hidden"
             aria-label={t("nav.close")}
           >
