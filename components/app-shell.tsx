@@ -5,12 +5,19 @@ import { NoteEditor } from "./note-editor";
 import { NotesList } from "./notes-list";
 import { Sidebar } from "./sidebar";
 import { Topbar } from "./topbar";
+import { SidebarSkeleton, NotesListSkeleton, NoteEditorSkeleton } from "./skeleton";
 import { useNotes } from "@/hooks/use-notes";
 
 export function AppShell() {
   const notesApi = useNotes();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [mobileView, setMobileView] = useState<"list" | "editor">("list");
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    // Mark as initialized after first render
+    setIsInitialized(true);
+  }, []);
 
   useEffect(() => {
     function handleKey(event: KeyboardEvent) {
@@ -36,6 +43,25 @@ export function AppShell() {
     notesApi.setActiveId(id);
     setMobileView("editor");
   };
+
+  if (!isInitialized) {
+    return (
+      <div className="flex h-screen overflow-hidden bg-canvas dark:bg-[#0b0f14]">
+        <SidebarSkeleton />
+        <div className="flex min-w-0 flex-1 flex-col">
+          <div className="shrink-0 border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 h-12 lg:h-14" />
+          <div className="flex min-h-0 flex-1">
+            <div className="min-h-0 w-full shrink-0 lg:w-[min(380px,34vw)] lg:max-w-[420px] hidden lg:flex lg:flex-col">
+              <NotesListSkeleton />
+            </div>
+            <div className="min-h-0 min-w-0 flex-1 flex lg:flex-col">
+              <NoteEditorSkeleton />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen overflow-hidden bg-canvas animate-fade-in-up motion-reduce:animate-none dark:bg-[#0b0f14]">

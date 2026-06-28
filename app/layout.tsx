@@ -20,6 +20,9 @@ const vazirmatn = Vazirmatn({
 export const metadata: Metadata = {
   title: "NoteFlow — Notes & Notebooks",
   description: "A clean, keyboard-friendly workspace for notes, tags, and notebooks.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
