@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NoteEditor } from "./note-editor";
 import { NotesList } from "./notes-list";
 import { Sidebar } from "./sidebar";
@@ -11,6 +11,26 @@ export function AppShell() {
   const notesApi = useNotes();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [mobileView, setMobileView] = useState<"list" | "editor">("list");
+
+  useEffect(() => {
+    function handleKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setSidebarOpen(false);
+    }
+
+    if (sidebarOpen) {
+      window.addEventListener("keydown", handleKey);
+    }
+
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [sidebarOpen]);
+
+  function openSidebar() {
+    setSidebarOpen(true);
+  }
+
+  function closeSidebar() {
+    setSidebarOpen(false);
+  }
 
   const handleSelectNote = (id: string) => {
     notesApi.setActiveId(id);
@@ -27,11 +47,11 @@ export function AppShell() {
         activeNotebook={notesApi.notebook}
         setActiveNotebook={notesApi.setNotebook}
         mobileOpen={sidebarOpen}
-        onDismiss={() => setSidebarOpen(false)}
+        onDismiss={closeSidebar}
         onNewNote={() => {
           notesApi.createNote();
           setMobileView("editor");
-          setSidebarOpen(false);
+          closeSidebar();
         }}
       />
 
@@ -39,7 +59,7 @@ export function AppShell() {
         <Topbar
           searchQuery={notesApi.query}
           setSearchQuery={notesApi.setQuery}
-          onOpenSidebar={() => setSidebarOpen(true)}
+          onOpenSidebar={openSidebar}
         />
 
         <div className="flex min-h-0 flex-1">

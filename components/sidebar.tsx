@@ -50,17 +50,18 @@ export function Sidebar({
     <>
       <div
         className={`fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-[2px] transition dark:bg-black/60 lg:hidden ${
-          mobileOpen ? "visible opacity-100" : "invisible opacity-0"
+          mobileOpen ? "visible opacity-100 pointer-events-auto" : "invisible opacity-0 pointer-events-none"
         }`}
         onClick={onDismiss}
         aria-hidden="true"
       />
 
       <aside
-        className={`fixed inset-y-0 start-0 z-50 flex w-[min(88vw,280px)] flex-col border-e border-slate-200 bg-white animate-soft-pop transition duration-200 motion-reduce:animate-none dark:border-slate-800 dark:bg-slate-950 lg:static lg:z-0 lg:w-[260px] lg:shrink-0 ${
+        onClick={(e) => e.stopPropagation()}
+        className={`fixed inset-y-0 start-0 z-50 flex w-[min(88vw,280px)] flex-col border-e border-slate-200 bg-white transition-transform duration-200 dark:border-slate-800 dark:bg-slate-950 lg:static lg:z-0 lg:w-[260px] lg:shrink-0 lg:animate-soft-pop lg:motion-reduce:animate-none ${
           mobileOpen
-            ? "translate-x-0"
-            : "-translate-x-full rtl:translate-x-full lg:translate-x-0 rtl:lg:translate-x-0"
+            ? "translate-x-0 pointer-events-auto"
+            : "-translate-x-full rtl:translate-x-full pointer-events-none lg:pointer-events-auto lg:translate-x-0 rtl:lg:translate-x-0"
         }`}
         aria-label="Navigation"
       >
@@ -157,6 +158,8 @@ export function Sidebar({
           </div>
         </div>
       </aside>
+
+      
     </>
   );
 }
