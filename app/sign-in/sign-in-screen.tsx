@@ -35,7 +35,7 @@ export function SignInScreen() {
           You must log in first to use NoteFlow. Your notes are saved to your account.
         </p>
         <div className="mt-7 w-full">
-          <SignIn path="/sign-in" routing="path" redirectUrl={`${origin}/`} />
+          <SignIn path="/sign-in" routing="path" forceRedirectUrl={`${origin}/`} />
         </div>
       </div>
     </main>
