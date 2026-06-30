@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import {
   Archive,
   ArrowLeft,
   Check,
   Cloud,
   Loader2,
+  Plus,
   Pin,
   Share2,
   Star,
@@ -59,6 +60,11 @@ export function NoteEditor({
     }
     onChange({ tags: [...note.tags, tag] });
     setTagInput("");
+  };
+
+  const handleTagSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    addTag();
   };
 
   const handleShare = async () => {
@@ -203,7 +209,7 @@ export function NoteEditor({
           className="mb-3 w-full border-0 bg-transparent text-xl font-semibold text-slate-900 outline-none placeholder:text-slate-300 dark:text-slate-100 dark:placeholder:text-slate-600 sm:text-2xl"
         />
 
-        <div className="mb-4 flex flex-wrap items-center gap-1.5">
+        <form onSubmit={handleTagSubmit} className="mb-4 flex flex-wrap items-center gap-1.5">
           {note.tags.map((tag) => (
             <TagChip
               key={tag}
@@ -216,17 +222,18 @@ export function NoteEditor({
             <input
               value={tagInput}
               onChange={(event) => setTagInput(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  event.preventDefault();
-                  addTag();
-                }
-              }}
               placeholder={t("editor.addTag")}
               className="w-full bg-transparent text-xs text-slate-700 outline-none placeholder:text-slate-400 dark:text-slate-200 dark:placeholder:text-slate-500 sm:text-sm"
             />
+            <button
+              type="submit"
+              className="ml-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+              aria-label={t("editor.addTag")}
+            >
+              <Plus size={14} />
+            </button>
           </div>
-        </div>
+        </form>
 
         <RichTextEditor
           value={note.content}
