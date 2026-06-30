@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useAppPreferences } from "@/contexts/app-preferences";
+import { useUser } from "@clerk/nextjs";
 import { sortNotes, stripHtml } from "@/lib/format";
 import { readStorage, writeStorage } from "@/lib/storage";
 import { Note, NoteFilter } from "@/lib/types";
@@ -9,21 +10,43 @@ import { Note, NoteFilter } from "@/lib/types";
 const NOTES_KEY = "noteflow-notes";
 const ACTIVE_ID_KEY = "noteflow-active-id";
 
+function getNotesKey(userId: string | undefined) {
+  return userId ? `${NOTES_KEY}-${userId}` : NOTES_KEY;
+}
+
+function getActiveIdKey(userId: string | undefined) {
+  return userId ? `${ACTIVE_ID_KEY}-${userId}` : ACTIVE_ID_KEY;
+}
+
 export function useNotes() {
   const { t } = useAppPreferences();
-  const [notes, setNotes] = useState<Note[]>(() => readStorage(NOTES_KEY, []));
-  const [activeId, setActiveId] = useState<string>(() => readStorage(ACTIVE_ID_KEY, ""));
+  const { isLoaded, user } = useUser();
+  const userId = user?.id;
+  const notesKey = getNotesKey(userId);
+  const activeIdKey = getActiveIdKey(userId);
+
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [activeId, setActiveId] = useState<string>("");
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<NoteFilter>("all");
   const [notebook, setNotebook] = useState<string>("all");
 
   useEffect(() => {
-    writeStorage(NOTES_KEY, notes);
-  }, [notes]);
+    if (!isLoaded) return;
+
+    setNotes(readStorage<Note[]>(notesKey, []));
+    setActiveId(readStorage<string>(activeIdKey, ""));
+  }, [isLoaded, notesKey, activeIdKey]);
 
   useEffect(() => {
-    writeStorage(ACTIVE_ID_KEY, activeId);
-  }, [activeId]);
+    if (!isLoaded) return;
+    writeStorage(notesKey, notes);
+  }, [isLoaded, notesKey, notes]);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    writeStorage(activeIdKey, activeId);
+  }, [isLoaded, activeIdKey, activeId]);
 
   const activeNote = useMemo(() => {
     const note = notes.find((n) => n.id === activeId);
