@@ -32,6 +32,10 @@ A clean, keyboard-friendly workspace for notes, tags, and notebooks. Built with 
 
 Sign-in is required via [Clerk](https://clerk.com). The app gates access to signed-in users; note data is stored locally in the browser (see [Data storage](#data-storage)).
 
+### Live demo
+
+Try the production deployment at: [https://note-flow-production-69fc.up.railway.app](https://note-flow-production-69fc.up.railway.app)
+
 ---
 
 ## Tech stack
