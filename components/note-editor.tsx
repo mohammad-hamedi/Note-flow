@@ -43,9 +43,12 @@ export function NoteEditor({
   const { t, locale } = useAppPreferences();
   const [tagInput, setTagInput] = useState("");
   const [shareFeedback, setShareFeedback] = useState("");
-  const saveStatus = useSaveStatus(
-    note ? [note.id, note.title, note.content, note.tags.join(",")] : [],
-  );
+  const saveStatus = useSaveStatus([
+    note?.id ?? "",
+    note?.title ?? "",
+    note?.content ?? "",
+    note?.tags?.join(",") ?? "",
+  ]);
 
   const addTag = () => {
     if (!note) return;
@@ -234,6 +237,7 @@ export function NoteEditor({
     </section>
   );
 }
+
 
 
 
